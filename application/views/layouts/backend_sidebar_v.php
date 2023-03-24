@@ -59,6 +59,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Pengaduan:</h6>
             <a class="collapse-item" href="<?= base_url('Masyarakat/PengaduanController'); ?>">Tulis Pengaduan</a>
+            <a class="collapse-item" href="<?= base_url('Masyarakat/PengaduanController/all_pengaduan'); ?>">Semua Pengaduan</a>
           </div>
         </div>
       </li>

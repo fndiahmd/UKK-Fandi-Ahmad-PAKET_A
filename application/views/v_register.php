@@ -13,12 +13,11 @@
               <div class="p-5">
               <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Register</h1>
-                        </div>
-
+                    </div>
                         <?= validation_errors('<div class="alert alert-danger alert-dismissible fade show" role="alert">', '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>') ?>
+                     </div>') ?>
 
-                        <?= $this->session->flashdata('msg'); ?>
+                        <?= $this->session->flashdata('msg_register'); ?>
 
                         <?= form_open('Auth/RegisterController', 'class="user"') ?>
                         <div class="form-group">

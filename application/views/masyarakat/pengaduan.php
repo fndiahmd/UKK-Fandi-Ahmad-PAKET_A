@@ -34,7 +34,7 @@
 
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 mt-5 text-gray-800">Data Pengaduan</h1>
+    <h1 class="h3 mb-4 mt-5 text-gray-800">Laporan Saya</h1>
 
     <div class="table-responsive">
         <table class="table">
@@ -100,7 +100,6 @@
             </tbody>
         </table>
     </div>
-
 
 </div>
 <!-- /.container-fluid -->

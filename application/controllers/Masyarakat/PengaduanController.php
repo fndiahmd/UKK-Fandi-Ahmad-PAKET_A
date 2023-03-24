@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+date_default_timezone_set('Asia/Jakarta');
 class PengaduanController extends CI_Controller
 {
 
@@ -22,6 +22,8 @@ class PengaduanController extends CI_Controller
 
         $masyarakat = $this->db->get_where('masyarakat', ['username' => $this->session->userdata('username')])->row_array();
         $data['data_pengaduan'] = $this->M_pengaduan->data_pengaduan_masyarakat_nik($masyarakat['nik'])->result_array();
+        $data['data_spengaduan'] = $this->db->get('pengaduan')->result_array();
+
         // $petugas = $this->db->get_where('petugas', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->form_validation->set_rules('isi_laporan', 'Isi Laporan Pengaduan', 'trim|required');
@@ -100,6 +102,38 @@ class PengaduanController extends CI_Controller
             </div>');
 
             redirect('Masyarakat/PengaduanController');
+        }
+    }
+
+    public function all_pengaduan_detail($id)
+    {
+        $cek_data = $this->db->get_where('pengaduan', ['id_pengaduan' => htmlspecialchars($id)])->row_array();
+
+        if (!empty($cek_data)) {
+            $data['title'] = 'Detail Pengaduan';
+
+            $data['data_pengaduan'] = $this->M_pengaduan->data_pengaduan_tanggapan(htmlspecialchars($id))->row_array();
+
+            if ($data['data_pengaduan']) {
+                $this->load->view('layouts/backend_head', $data);
+                $this->load->view('layouts/backend_sidebar_v');
+                $this->load->view('layouts/backend_topbar_v');
+                $this->load->view('masyarakat/pengaduan_detail');
+                $this->load->view('layouts/backend_footer_v');
+                $this->load->view('layouts/backend_foot');
+            } else {
+                $this->session->set_flashdata('msg_all_pengaduan', '<div class="alert alert-danger" role="alert">
+					Laporan sedang di proses!
+					</div>');
+
+                redirect('Masyarakat/PengaduanController/all_pengaduan');
+            }
+        } else {
+            $this->session->set_flashdata('msg_all_pengaduan', '<div class="alert alert-danger" role="alert">
+            Data tidak ada!
+            </div>');
+
+            redirect('Masyarakat/PengaduanController/all_pengaduan');
         }
     }
 
@@ -218,6 +252,18 @@ class PengaduanController extends CI_Controller
         }
     }
 
+    public function all_pengaduan()
+    {
+        $data['title'] = 'Semua Pengaduan';
+        $data['data_spengaduan'] = $this->db->get('pengaduan')->result_array();
+        
+        $this->load->view('layouts/backend_head', $data);
+        $this->load->view('layouts/backend_sidebar_v');
+        $this->load->view('layouts/backend_topbar_v');
+        $this->load->view('masyarakat/all_pengaduan');
+        $this->load->view('layouts/backend_footer_v');
+        $this->load->view('layouts/backend_foot');
+    }
 
     private function upload_foto($foto)
     {
@@ -239,5 +285,3 @@ class PengaduanController extends CI_Controller
     }
 }
 
-/* End of file PengaduanController.php */
-/* Location: ./application/controllers/User/PengaduanController.php */
