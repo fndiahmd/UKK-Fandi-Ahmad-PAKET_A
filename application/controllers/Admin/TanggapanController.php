@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+date_default_timezone_set('Asia/Jakarta');
 class TanggapanController extends CI_Controller
 {
 
@@ -47,7 +47,9 @@ class TanggapanController extends CI_Controller
             $this->load->view('layouts/backend_footer_v');
             $this->load->view('layouts/backend_foot');
         } else {
-            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
+            $this->session->set_userdata($session);
+
+            $this->session->set_flashdata('msg_tanggapan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             data tidak ada
             </div>');
 
@@ -121,13 +123,15 @@ class TanggapanController extends CI_Controller
                 $update_status_pengaduan = $this->db->update('pengaduan', $params, ['id_pengaduan' => $id_pengaduan]);
 
                 if ($update_status_pengaduan) {
-                    $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">
+                $this->session->set_userdata($session);
+
+                    $this->session->set_flashdata('msg_tanggapan_proses', '<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						Pengaduan berhasil diselesaikan !
 						</div>');
 
                     redirect('Admin/TanggapanController/tanggapan_proses');
                 } else {
-                    $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
+                    $this->session->set_flashdata('msg_tanggapan_proses', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         Pengaduan gagal diselesaikan !
 						</div>');
 
@@ -135,7 +139,7 @@ class TanggapanController extends CI_Controller
                 }
             }
         } else {
-            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('msg_tanggapan_proses', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				data tidak ada
 				</div>');
 
@@ -169,7 +173,7 @@ class TanggapanController extends CI_Controller
 
                 $params = [
                     'id_pengaduan'      => $id_pengaduan,
-                    'tgl_tanggapan'     => date('Y-m-d'),
+                    'tgl_tanggapan'     => date('Y-m-d H:i:s'),
                     'tanggapan'         => htmlspecialchars($this->input->post('tanggapan', true)),
                     'id_petugas'        => $petugas['id_petugas'],
                 ];
@@ -184,20 +188,22 @@ class TanggapanController extends CI_Controller
                     $update_status_pengaduan = $this->db->update('pengaduan', $params, ['id_pengaduan' =>  $id_pengaduan]);
 
                     if ($update_status_pengaduan) {
-                        $this->session->set_flashdata('msg', '<div class="alert alert-primary" role="alert">
+                        $this->session->set_userdata($session);
+
+                        $this->session->set_flashdata('msg_tanggapan', '<div class="alert alert-primary" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							Menanggapi berhasil
 							</div>');
 
                         redirect('Admin/TanggapanController');
                     } else {
-                        $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
+                        $this->session->set_flashdata('msg_tanggapan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							Gagal Update Pengaduan
 							</div>');
 
                         redirect('Admin/TanggapanController');
                     }
                 } else {
-                    $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
+                    $this->session->set_flashdata('msg_tanggapan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							Menanggapi gagal
 							</div>');
 
@@ -205,7 +211,7 @@ class TanggapanController extends CI_Controller
                 }
             }
         } else {
-            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('msg_tanggapan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							data tidak ada
 							</div>');
 

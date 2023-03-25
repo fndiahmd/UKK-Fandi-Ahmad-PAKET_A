@@ -49,7 +49,7 @@ class LoginController extends CI_Controller
 
                 $this->session->set_userdata($session);
 
-                $this->session->set_flashdata('msg', '<div class="alert alert-primary" role="alert">
+                $this->session->set_flashdata('msg', '<div class="alert alert-primary" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					Login berhasil!
 					</div>');
 
@@ -57,7 +57,7 @@ class LoginController extends CI_Controller
 
             }else {
                 // password salah
-                $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					Username atau Password salah!
 					</div>');
 
@@ -78,7 +78,7 @@ class LoginController extends CI_Controller
 
                 $this->session->set_userdata($session);
 
-                $this->session->set_flashdata('msg', '<div class="alert alert-primary" role="alert">
+                $this->session->set_flashdata('msg', '<div class="alert alert-primary" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					Login berhasil!
 					</div>');
 
@@ -97,7 +97,7 @@ class LoginController extends CI_Controller
 
             }else {
                 // jika password salah
-                $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					Username atau Password salah!
 					</div>');
 
@@ -106,7 +106,7 @@ class LoginController extends CI_Controller
 
         }else{
             // tidak ada akun yang di temukan
-            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				Username atau Password salah! petugas
 				</div>');
             return redirect('Auth/LoginController');
@@ -120,8 +120,10 @@ class LoginController extends CI_Controller
         $session = ['username', 'level'];
 
         $this->session->unset_userdata($session);
+        // $this->session->set_userdata($session);
 
-        $this->session->set_flashdata('msg', '<div class="alert alert-primary" role="alert">
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-primary" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			Logout berhasil!
 			</div>');
 

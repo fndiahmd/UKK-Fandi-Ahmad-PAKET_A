@@ -40,7 +40,7 @@ class PengaduanController extends CI_Controller
             $upload_foto = $this->upload_foto('foto');
 
             if ($upload_foto == FALSE) {
-                $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					Upload foto pengaduan gagal, hanya png,jpg dan jpeg yang dapat di upload!
 					</div>');
 
@@ -57,13 +57,13 @@ class PengaduanController extends CI_Controller
                 $resp = $this->M_pengaduan->create($params);
 
                 if ($resp) {
-                    $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-primary" role="alert">
+                    $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-primary" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						Laporan berhasil dibuat
 						</div>');
 
                     redirect('Masyarakat/PengaduanController');
                 } else {
-                    $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert">
+                    $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						Laporan gagal dibuat!
 						</div>');
 
@@ -90,14 +90,16 @@ class PengaduanController extends CI_Controller
                 $this->load->view('layouts/backend_footer_v');
                 $this->load->view('layouts/backend_foot');
             } else {
-                $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert">
+                $this->session->set_userdata($session);
+
+                $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					Laporan sedang di proses!
 					</div>');
 
                 redirect('Masyarakat/PengaduanController');
             }
         } else {
-            $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             Data tidak ada!
             </div>');
 
@@ -122,14 +124,16 @@ class PengaduanController extends CI_Controller
                 $this->load->view('layouts/backend_footer_v');
                 $this->load->view('layouts/backend_foot');
             } else {
-                $this->session->set_flashdata('msg_all_pengaduan', '<div class="alert alert-danger" role="alert">
+                $this->session->set_userdata($session);
+
+                $this->session->set_flashdata('msg_all_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					Laporan sedang di proses!
 					</div>');
 
                 redirect('Masyarakat/PengaduanController/all_pengaduan');
             }
         } else {
-            $this->session->set_flashdata('msg_all_pengaduan', '<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('msg_all_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             Data tidak ada!
             </div>');
 
@@ -151,27 +155,29 @@ class PengaduanController extends CI_Controller
                 unlink($path);
 
                 if ($resp) {
-                    $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-primary" role="alert">
+                $this->session->set_userdata($session);
+
+                    $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-primary" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             Hapus pengaduan berhasil
             </div>');
 
                     redirect('Masyarakat/PengaduanController');
                 } else {
-                    $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert">
+                    $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             Hapus pengaduan gagal!
             </div>');
 
                     redirect('Masyarakat/PengaduanController');
                 }
             } else {
-                $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					Pengaduan sedang di proses!
 					</div>');
 
                 redirect('Masyarakat/PengaduanController');
             }
         } else {
-            $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				data tidak ada
 				</div>');
 
@@ -205,7 +211,9 @@ class PengaduanController extends CI_Controller
                     $upload_foto = $this->upload_foto('foto');
 
                     if ($upload_foto == FALSE) {
-                        $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert">
+                $this->session->set_userdata($session);
+
+                        $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         Upload foto pengaduan gagal, hanya png,jpg dan jpeg yang dapat di upload!
                         </div>');
 
@@ -222,13 +230,13 @@ class PengaduanController extends CI_Controller
                         $resp = $this->db->update('pengaduan', $params, ['id_pengaduan' => $id]);
 
                         if ($resp) {
-                            $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-primary" role="alert">
+                            $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-primary" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             Laporan berhasil diedit
                             </div>');
 
                             redirect('Masyarakat/PengaduanController');
                         } else {
-                            $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert">
+                            $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             Laporan gagal diedit!
                             </div>');
 
@@ -237,14 +245,14 @@ class PengaduanController extends CI_Controller
                     }
                 }
             } else {
-                $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 Pengaduan sedang di proses!
                 </div>');
 
                 redirect('Masyarakat/PengaduanController');
             }
         } else {
-            $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert">
+            $this->session->set_flashdata('msg_pengaduan', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             data tidak ada
             </div>');
 

@@ -6,7 +6,8 @@
 
     <div class="row">
         <div class="col-lg-8">
-            <?= $this->session->flashdata('pesan'); ?>
+            <?= $this->session->flashdata('msg'); ?>
+
         </div>
     </div>
 

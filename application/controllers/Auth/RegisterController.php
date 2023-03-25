@@ -44,13 +44,15 @@ class RegisterController extends CI_Controller
             $resp = $this->M_masyarakat->create($params);
 
             if ($resp) {
-                $this->session->set_flashdata('msg_register', '<div class="alert alert-primary" role="alert">
+                $this->session->set_userdata($session);
+
+                $this->session->set_flashdata('msg_register', '<div class="alert alert-primary" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 Register berhasil!
                 </div>');
 
                 redirect('Auth/RegisterController');
             } else {
-                $this->session->set_flashdata('msg_register', '<div class="alert alert-danger" role="alert">
+                $this->session->set_flashdata('msg_register', '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 Register gagal!
                 </div>');
 

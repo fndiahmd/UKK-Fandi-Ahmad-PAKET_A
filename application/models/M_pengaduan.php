@@ -7,6 +7,14 @@ class M_pengaduan extends CI_Model
     private $table = 'pengaduan';
     private $primary_key = 'id_pengaduan';
 
+    function data($number,$offset){
+		return $query = $this->db->get('pengaduan',$number,$offset)->result();		
+	}
+ 
+	function jumlah_data(){
+		return $this->db->get('pengaduan')->num_rows();
+	}
+
     public function create($data)
     {
         return $this->db->insert($this->table, $data);
